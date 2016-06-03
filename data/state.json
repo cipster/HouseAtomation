@@ -1,0 +1,40 @@
+{
+  "dining-room-light": {
+    "isOn": true
+  },
+  "kitchen-light": {
+    "isOn": false
+  },
+  "living-room-light": {
+    "isOn": false
+  },
+  "bed-room-light": {
+    "isOn": false
+  },
+  "bed-room-2-light": {
+    "isOn": true
+  },
+  "bed-room-3-light": {
+    "isOn": false
+  },
+  "bath-room-light": {
+    "isOn": false
+  },
+  "bath-room-2-light": {
+    "isOn": true
+  },
+  "bed-room-curtains": {
+    "isClosed": true
+  },
+  "bed-room-2-curtains": {
+    "isClosed": false
+  },
+  "bed-room-3-curtains": {
+    "isClosed": false
+  },
+  "temperature": {
+    "left-side-temp": 22,
+    "right-side-temp": 23,
+    "living-area-temp": 25
+  }
+}

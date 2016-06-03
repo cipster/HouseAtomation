@@ -1,0 +1,29 @@
+.room {
+    fill: transparent;
+}
+
+#house {
+    width: 100%;
+    height: 1000px;
+}
+
+.light-on {
+    fill: rgba(255, 255, 0, 0.44);
+}
+
+.curtains-open {
+    fill: transparent !important;
+}
+
+.cold {
+    fill: rgba(12, 41, 255, 0.44);
+}
+
+.perfect {
+    fill: transparent;
+}
+
+.hot {
+    fill: rgba(255, 0, 17, 0.44);
+}
+
