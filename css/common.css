@@ -1,10 +1,10 @@
-.room {
-    fill: transparent;
-}
-
 #house {
     width: 100%;
     height: 1000px;
+}
+
+.room {
+    fill: transparent;
 }
 
 .light-on {
@@ -16,7 +16,7 @@
 }
 
 .cold {
-    fill: rgba(12, 41, 255, 0.09);
+    fill: rgba(12, 41, 255, 0.19);
 }
 
 .perfect {
@@ -24,6 +24,6 @@
 }
 
 .hot {
-    fill: rgba(255, 0, 17, 0.09);
+    fill: rgba(255, 0, 17, 0.19);
 }
 

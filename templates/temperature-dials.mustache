@@ -1,0 +1,41 @@
+<div class="col-md-4">
+    <label> Left Side Temperature
+        <select id="left-side-temp" class="form-control temperature-dial left-side">
+            {{#temperature.dialValues}}
+                <optgroup label="{{label}}">
+                    {{#values}}
+                        <option value="{{.}}">{{.}}&deg; C</option>
+                    {{/values}}
+                </optgroup>
+            {{/temperature.dialValues}}
+        </select>
+    </label>
+</div>
+
+<div class="col-md-4">
+    <label> Living Area Temperature
+        <select id="living-area-temp" class="form-control temperature-dial living-side">
+            {{#temperature.dialValues}}
+                <optgroup label="{{label}}">
+                    {{#values}}
+                        <option value="{{.}}">{{.}}&deg; C</option>
+                    {{/values}}
+                </optgroup>
+            {{/temperature.dialValues}}
+        </select>
+    </label>
+</div>
+
+<div class="col-md-4">
+    <label> Right Side Temperature
+        <select id="right-side-temp" class="form-control temperature-dial right-side">
+            {{#temperature.dialValues}}
+                <optgroup label="{{label}}">
+                    {{#values}}
+                        <option value="{{.}}">{{.}}&deg; C</option>
+                    {{/values}}
+                </optgroup>
+            {{/temperature.dialValues}}
+        </select>
+    </label>
+</div>

@@ -1,4 +1,5 @@
 var $house = $("#house"),
+    $temperatureDials = $('#temperature-dials'),
     $svg,
     $diningRoom,
     $diningRoomLight,
@@ -19,6 +20,7 @@ var $house = $("#house"),
     $bathroomLight,
     $bathroom2,
     $bathroom2Light,
+    $dialTemplate,
 
     events = {
         lightEvents: {
@@ -65,10 +67,19 @@ var $house = $("#house"),
         $bathroom2 = $('#bath-room-2', $svg.root());
         $bathroom2Light = $('#bath-room-2-light', $svg.root());
     },
+    loadDialTemplate = function () {
+        $.get('templates/temperature-dials.mustache', function (template) {
+            $dialTemplate = template;
+            Mustache.parse($dialTemplate);
+        });
+    },
     loadState = function () {
         $.getJSON('data/state.json').done(function (stateData) {
             console.log("Current house state is:");
             console.log(stateData);
+
+            var renderedDialTemplate = Mustache.render($dialTemplate, stateData);
+            $temperatureDials.html(renderedDialTemplate);
 
             $.each($(document).find('.light'), function (index, switchElement) {
                 var $switch = $(switchElement),
@@ -94,12 +105,12 @@ var $house = $("#house"),
             $.each($(document).find('.temperature-dial'), function (index, dialElement) {
                 var $dial = $(dialElement),
                     dialId = $dial.prop('id'),
-                    dialTemperature = stateData.temperature[dialId],
+                    dialTemperature = stateData.temperature.dials[dialId],
                     sideId = getTemperatureSide($dial),
                     $temperatureZone = $(sideId, $svg.root());
 
-                    $dial.val(dialTemperature);
-                    changeTemperature(dialTemperature, $temperatureZone);
+                $dial.val(dialTemperature);
+                changeTemperature(dialTemperature, $temperatureZone);
             });
 
         });
@@ -151,7 +162,7 @@ var $house = $("#house"),
     },
     getTemperatureSide = function ($temperatureDial) {
         var sideId;
-        if($temperatureDial.hasClass('left-side')){
+        if ($temperatureDial.hasClass('left-side')) {
             sideId = "#bed-room-left-heat";
         } else if ($temperatureDial.hasClass('right-side')) {
             sideId = "#bed-room-right-heat";
@@ -169,6 +180,7 @@ $(document).ready(function () {
         }
     );
 
+    loadDialTemplate();
     loadState();
 
     $(document).on('click', '.light', function () {

@@ -33,8 +33,24 @@
     "isClosed": false
   },
   "temperature": {
-    "left-side-temp": 22,
-    "right-side-temp": 23,
-    "living-area-temp": 25
+    "dials": {
+      "left-side-temp": 22,
+      "right-side-temp": 23,
+      "living-area-temp": 25
+    },
+    "dialValues": [
+      {
+        "label": "Low",
+        "values": [ 18, 19, 20]
+      },
+      {
+        "label": "Perfect",
+        "values": [ 21, 22, 23]
+      },
+      {
+        "label": "High",
+        "values": [ 24, 25, 26]
+      }
+    ]
   }
 }
