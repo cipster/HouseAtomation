@@ -152,6 +152,7 @@
     <dictionary name="ciprian">
       <words>
         <w>ciprian</w>
+        <w>deps</w>
       </words>
     </dictionary>
   </component>
