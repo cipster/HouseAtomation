@@ -40,6 +40,7 @@ var $house = $("#house"),
             afterDecrease: "temperature.decreased"
         }
     },
+
     loadHouseSvg = function () {
         $svg = $house.svg('get');
         $svg.load('data/houseAutomationPlan.svg', {addTo: true, changeSize: false});
@@ -65,7 +66,7 @@ var $house = $("#house"),
         $bathroom2Light = $('#bath-room-2-light', $svg.root());
     },
     loadState = function () {
-        $.getJSON('data/state.json', function (stateData) {
+        $.getJSON('data/state.json').done(function (stateData) {
             console.log("Current house state is:");
             console.log(stateData);
 
