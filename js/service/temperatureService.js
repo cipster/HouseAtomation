@@ -1,4 +1,4 @@
-define('TemperatureService', ['EventService'], function (EventService) {
+define('TemperatureService', ['jquery', 'EventService'], function ($, EventService) {
     var temperatureEvents = EventService.temperatureEvents,
         /**
          * Changes the temperature representation
@@ -7,12 +7,18 @@ define('TemperatureService', ['EventService'], function (EventService) {
          * Triggers event <code>temperature.change</code> before the temperature changes
          * Triggers event <code>temperature.changed</code> after the temperature changes
          *
-         * @param temperature
-         * @type int
-         * @param $temperatureZone
+         * @param $temperatureDial
          * @type jquery
          */
-        changeTemperature = function (temperature, $temperatureZone) {
+        changeTemperature = function ($temperatureDial) {
+            var temperature = $temperatureDial.val(),
+                sideId = getTemperatureSide($temperatureDial),
+                $temperatureZone = $(sideId),
+                data = {
+                    sideId: sideId,
+                    value: temperature
+                };
+
             $temperatureZone.trigger(temperatureEvents.temperatureChange);
 
             $temperatureZone.removeClass('cold perfect hot');
@@ -24,7 +30,10 @@ define('TemperatureService', ['EventService'], function (EventService) {
             } else {
                 $temperatureZone.addClass('hot');
             }
+
             $temperatureZone.trigger(temperatureEvents.temperatureChanged);
+
+            saveTemperature(data);
         },
         /**
          * Returns the css id selector for the zone affected by the temperature change
@@ -45,6 +54,12 @@ define('TemperatureService', ['EventService'], function (EventService) {
             }
 
             return sideId;
+        },
+        saveTemperature = function (data) {
+            $.post('change-temperature', data)
+                .fail(function () {
+                    console.log("change-temperature not implemented yet")
+                });
         };
 
     return {

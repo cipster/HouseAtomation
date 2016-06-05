@@ -54,12 +54,11 @@ define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainSer
                 $.each($(document).find('.temperature-dial'), function (index, dialElement) {
                     var $dial = $(dialElement),
                         dialId = $dial.prop('id'),
-                        dialTemperature = stateData.temperature.dials[dialId],
-                        sideId = TemperatureService.getTemperatureSide($dial),
-                        $temperatureZone = $(sideId);
+                        dialTemperature = stateData.temperature.dials[dialId];
 
                     $dial.val(dialTemperature);
-                    TemperatureService.changeTemperature(dialTemperature, $temperatureZone);
+
+                    TemperatureService.changeTemperature($dial);
                 });
             };
 

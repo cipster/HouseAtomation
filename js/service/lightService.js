@@ -8,7 +8,7 @@ define('LightService', ['EventService'], function (EventService) {
          * @see switchLightOnIn
          *
          * @param $room
-         * @type jquery
+         * @type jquery $('#roomId')
          */
         lightSwitch = function ($room) {
             if ($room.hasClass('light-on')) {
@@ -27,12 +27,15 @@ define('LightService', ['EventService'], function (EventService) {
          * @see lightSwitch
          *
          * @param $room
-         * @type jquery
+         * @type jquery $('#roomId')
          */
         switchLightOffIn = function ($room) {
             $room.trigger(lightEvents.beforeOff);
             $room.removeClass('light-on');
             $room.trigger(lightEvents.afterOff);
+
+            var on = false;
+            saveLightState($room, on);
         },
         /**
          * Switches the light on in the specified jquery object <b>$room</b>
@@ -43,13 +46,36 @@ define('LightService', ['EventService'], function (EventService) {
          * @see switchLightOffIn
          * @see lightSwitch
          *
-         * @param $room
+         * @param $room $('#roomId')
          * @type jquery
          */
         switchLightOnIn = function ($room) {
             $room.trigger(lightEvents.beforeOn);
             $room.addClass('light-on');
             $room.trigger(lightEvents.afterOn);
+
+            var on = true;
+            saveLightState($room, on);
+        },
+        /**
+         * Sends the light state to the "backend" for the specified $room
+         *
+         * @param $room $('#roomId')
+         * @type jquery
+         * @param isOn true or false
+         * @type boolean
+         */
+        saveLightState = function ($room, isOn) {
+            var roomId = $room.prop('id'),
+                data = {
+                    roomId: roomId,
+                    isOn: isOn
+                };
+
+            $.post('switch-light', data)
+                .fail(function () {
+                    console.log("switch-light not implemented yet")
+                });
         };
 
     return {

@@ -6,6 +6,7 @@ require.config({
         domReady: "bower_components/domReady/domReady",
         HouseController: "js/controller/houseController",
         EventService: "js/service/eventService",
+        SvgService: "js/service/svgService",
         StateService: "js/service/stateService",
         TemplateService: "js/service/templateService",
         LightService: "js/service/lightService",
@@ -26,7 +27,7 @@ require.config({
 /**
  * Entry point of the app.
  *
- * @see HouseController#init
+ * @see HouseController.init
  */
 require(['HouseController'], function (HouseController) {
 });

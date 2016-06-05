@@ -6,7 +6,7 @@ define('CurtainService', ['EventService'], function (EventService) {
          * @see openCurtains
          * @see closeCurtains
          *
-         * @param $curtains
+         * @param $curtains $('#curtainId')
          * @type jquery
          */
         curtainPull = function ($curtains) {
@@ -26,12 +26,15 @@ define('CurtainService', ['EventService'], function (EventService) {
          * @see curtainPull
          *
          * @param $curtains
-         * @type jquery
+         * @type jquery $('#curtainId')
          */
         openCurtains = function ($curtains) {
             $curtains.trigger(curtainEvents.beforeOpen);
             $curtains.addClass('curtains-open');
             $curtains.trigger(curtainEvents.afterOpen);
+
+            var closed = false;
+            saveCurtainState($curtains, closed);
         },
         /**
          * Closes the curtains specified by the jquery object <code>$curtains</code>
@@ -42,13 +45,36 @@ define('CurtainService', ['EventService'], function (EventService) {
          * @see openCurtains
          * @see curtainPull
          *
-         * @param $curtains
+         * @param $curtains $('#curtainId')
          * @type jquery
          */
         closeCurtains = function ($curtains) {
             $curtains.trigger(curtainEvents.beforeClosed);
             $curtains.removeClass('curtains-open');
             $curtains.trigger(curtainEvents.afterClosed);
+
+            var closed = true;
+            saveCurtainState($curtains, closed);
+        },
+        /**
+         * Sends the curtain state to the "backend" for the specified $curtains
+         *
+         * @param $curtains $('#curtainId')
+         * @type jquery
+         * @param isClosed true or false
+         * @type boolean
+         */
+        saveCurtainState = function ($curtains, isClosed) {
+            var curtainId = $curtains.prop('id'),
+                data = {
+                    curtainId: curtainId,
+                    isClosed: isClosed
+                };
+
+            $.post('curtain-pull', data)
+                .fail(function () {
+                    console.log("curtain-pull not implemented yet")
+                });
         };
 
     return {

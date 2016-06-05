@@ -1,35 +1,14 @@
-define('HouseController', ['domReady', 'jquery', 'svg', 'StateService', 'LightService', 'CurtainService', 'TemperatureService'],
-    function (domReady, $, svg, StateService, LightService, CurtainService, TemperatureService) {
-        var $svg,
+define('HouseController', ['domReady', 'jquery', 'SvgService', 'LightService', 'CurtainService', 'TemperatureService'],
+    function (domReady, $, SvgService, LightService, CurtainService, TemperatureService) {
 
-            /**
-             * Loads the SVG document containing the house models
-             * and starts loading the state of the house from the "backend"
-             *
-             * @see StateService.getAndLoadState
-             */
-            loadHouse = function () {
-                var $house = $("#house");
-                $house.svg({
-                        onLoad: function () {
-                            $svg = $house.svg('get');
-                            $svg.load('data/houseAutomationPlan.svg', {addTo: true, changeSize: false});
-
-                            StateService.getAndLoadState();
-                        },
-                        settings: {}
-                    }
-                );
-
-            },
             /**
              * Initiates the loading of the house and declares event listeners for
              * interaction with house controls
              *
              * @see loadHouse
              */
-            init = function () {
-                loadHouse();
+            var init = function () {
+                SvgService.loadHouse();
 
                 $(document).on('click', '.light', function () {
                     var $room = $(this).closest('.room').find('.room-light');
@@ -43,12 +22,9 @@ define('HouseController', ['domReady', 'jquery', 'svg', 'StateService', 'LightSe
                 });
 
                 $(document).on('change', '.temperature-dial', function () {
-                    var $temperatureDial = $(this),
-                        temperature = $temperatureDial.val(),
-                        sideId = TemperatureService.getTemperatureSide($temperatureDial),
-                        $temperatureZone = $(sideId, $svg.root());
+                    var $temperatureDial = $(this);
 
-                    TemperatureService.changeTemperature(temperature, $temperatureZone);
+                    TemperatureService.changeTemperature($temperatureDial);
                 });
             };
 
