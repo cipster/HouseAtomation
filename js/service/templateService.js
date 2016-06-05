@@ -1,4 +1,10 @@
 define('TemplateService', ['jquery', 'mustache'], function ($, Mustache) {
+    /**
+     * Renders the Dial Template ( "templates/temperature-dials.mustache" ) with values from stateData
+     *
+     * @param stateData
+     * @type Object
+     */
     var renderDialTemplate = function (stateData) {
         var $temperatureDials = $('#temperature-dials'),
             renderedDialTemplate;

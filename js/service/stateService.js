@@ -1,5 +1,15 @@
 define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainService', 'TemperatureService'],
     function ($, TemplateService, LightService, CurtainService, TemperatureService) {
+        /**
+         * Retrieves the state of the house from the "backend" and then
+         * <ul>
+         *     <li> renders the dial template with data loaded</li>
+         *     <li> renders the state of the app after a timeout of 200 ms switching on lights, pulling the curtains setting the temperature</li>
+         * </ul>
+         *
+         * @see TemplateService.renderDialTemplate
+         * @see loadState
+         */
         var getAndLoadState = function () {
                 $.getJSON('data/state.json').done(function (state) {
                     console.log("Current house state is:");
@@ -8,11 +18,17 @@ define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainSer
                     TemplateService.renderDialTemplate(state);
 
                     setTimeout(function () {
-                        loadState(state)
-                    }, 300);
+                        loadState(state);
+                    }, 200);
                 });
             },
-
+            /**
+             * Renders the state of the app switching on lights, pulling the curtains setting the temperature
+             * contained in stateData
+             *
+             * @param stateData
+             * @type Object
+             */
             loadState = function (stateData) {
                 $.each($(document).find('.light'), function (index, switchElement) {
                     var $switch = $(switchElement),

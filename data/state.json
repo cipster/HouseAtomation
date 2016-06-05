@@ -35,7 +35,7 @@
   "temperature": {
     "dials": {
       "left-side-temp": 22,
-      "right-side-temp": 23,
+      "right-side-temp": 19,
       "living-area-temp": 25
     },
     "dialValues": [

@@ -19,6 +19,8 @@
     "mustache.js": "mustache#^2.2.1",
     "requirejs": "^2.2.0",
     "r.js": "^2.2.0",
-    "domReady": "^2.0.1"
+    "domReady": "^2.0.1",
+    "jasmine-core": "jasmine#^2.4.1",
+    "jasmine-jquery": "^2.1.1"
   }
 }

@@ -2,20 +2,32 @@ define('HouseController', ['domReady', 'jquery', 'svg', 'StateService', 'LightSe
     function (domReady, $, svg, StateService, LightService, CurtainService, TemperatureService) {
         var $svg,
 
+            /**
+             * Loads the SVG document containing the house models
+             * and starts loading the state of the house from the "backend"
+             *
+             * @see StateService.getAndLoadState
+             */
             loadHouse = function () {
                 var $house = $("#house");
                 $house.svg({
                         onLoad: function () {
                             $svg = $house.svg('get');
                             $svg.load('data/houseAutomationPlan.svg', {addTo: true, changeSize: false});
+
+                            StateService.getAndLoadState();
                         },
                         settings: {}
                     }
                 );
 
-                StateService.getAndLoadState();
             },
-
+            /**
+             * Initiates the loading of the house and declares event listeners for
+             * interaction with house controls
+             *
+             * @see loadHouse
+             */
             init = function () {
                 loadHouse();
 
@@ -43,5 +55,4 @@ define('HouseController', ['domReady', 'jquery', 'svg', 'StateService', 'LightSe
         domReady(function () {
             init();
         });
-
     });
