@@ -1,5 +1,6 @@
 define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainService', 'TemperatureService'],
     function ($, TemplateService, LightService, CurtainService, TemperatureService) {
+
         /**
          * Retrieves the state of the house from the "backend" and then
          * <ul>
@@ -22,6 +23,7 @@ define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainSer
                     }, 200);
                 });
             },
+
             /**
              * Renders the state of the app switching on lights, pulling the curtains setting the temperature
              * contained in stateData
@@ -30,6 +32,13 @@ define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainSer
              * @type Object
              */
             loadState = function (stateData) {
+                var loadedState = {
+                    temperature: {
+                        dials:{
+
+                        }
+                    }
+                };
                 $.each($(document).find('.light'), function (index, switchElement) {
                     var $switch = $(switchElement),
                         switchId = $switch.prop('id'),
@@ -38,6 +47,8 @@ define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainSer
 
                     if (lightOnInThisRoom) {
                         LightService.switchLightOnIn($room);
+
+                        loadedState[switchId] = {isOn: true};
                     }
                 });
 
@@ -48,6 +59,8 @@ define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainSer
 
                     if (!curtainsClosedInThisRoom) {
                         CurtainService.openCurtains($curtain);
+
+                       loadedState[curtainId] = {isClosed: true};
                     }
                 });
 
@@ -59,11 +72,16 @@ define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainSer
                     $dial.val(dialTemperature);
 
                     TemperatureService.changeTemperature($dial);
+
+                    loadedState.temperature.dials[dialId] = dialTemperature;
                 });
+
+                return loadedState;
             };
 
         return {
-            getAndLoadState: getAndLoadState
+            getAndLoadState: getAndLoadState,
+            loadState: loadState
         }
 
     });

@@ -1,5 +1,7 @@
 define('TemperatureService', ['jquery', 'EventService'], function ($, EventService) {
-    var temperatureEvents = EventService.temperatureEvents,
+    var MINIMUM_PERFECT_TEMPERATURE = 21,
+        MAXIMUM_PERFECT_TEMPERATURE = 23,
+        temperatureEvents = EventService.temperatureEvents,
         /**
          * Changes the temperature representation
          * Depending on the value, it can display: cold, optimal and hot temperature
@@ -12,8 +14,8 @@ define('TemperatureService', ['jquery', 'EventService'], function ($, EventServi
          */
         changeTemperature = function ($temperatureDial) {
             var temperature = $temperatureDial.val(),
-                sideId = getTemperatureSide($temperatureDial),
-                $temperatureZone = $(sideId),
+                $temperatureZone = getTemperatureSide($temperatureDial),
+                sideId = $temperatureZone.prop('id'),
                 data = {
                     sideId: sideId,
                     value: temperature
@@ -23,17 +25,21 @@ define('TemperatureService', ['jquery', 'EventService'], function ($, EventServi
 
             $temperatureZone.removeClass('cold perfect hot');
 
-            if (temperature < 21) {
+            if (temperature < MINIMUM_PERFECT_TEMPERATURE) {
                 $temperatureZone.addClass('cold');
-            } else if (temperature < 24) {
-                $temperatureZone.addClass('perfect');
             } else {
-                $temperatureZone.addClass('hot');
+                if (temperature <= MAXIMUM_PERFECT_TEMPERATURE) {
+                    $temperatureZone.addClass('perfect');
+                } else {
+                    $temperatureZone.addClass('hot');
+                }
             }
 
             $temperatureZone.trigger(temperatureEvents.temperatureChanged);
 
             saveTemperature(data);
+
+            return $temperatureZone;
         },
         /**
          * Returns the css id selector for the zone affected by the temperature change
@@ -53,8 +59,14 @@ define('TemperatureService', ['jquery', 'EventService'], function ($, EventServi
                 sideId = "#living-room-heat";
             }
 
-            return sideId;
+            return $(sideId);
         },
+        /**
+         * Sends the temperature state to the "backend" for the specified $room
+         *
+         * @param data data = { sideId: <sideId>, value: <temperature> }
+         * @type Object
+         */
         saveTemperature = function (data) {
             $.post('change-temperature', data)
                 .fail(function () {

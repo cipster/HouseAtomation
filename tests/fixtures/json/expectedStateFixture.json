@@ -1,0 +1,24 @@
+{
+  "temperature": {
+    "dials": {
+      "left-side-temp": 22,
+      "living-area-temp": 25,
+      "right-side-temp": 19
+    }
+  },
+  "bath-room-2-light": {
+    "isOn": true
+  },
+  "bed-room-2-light": {
+    "isOn": true
+  },
+  "bed-room-light": {
+    "isOn": true
+  },
+  "bed-room-3-curtains": {
+    "isClosed": true
+  },
+  "bed-room-2-curtains": {
+    "isClosed": true
+  }
+}

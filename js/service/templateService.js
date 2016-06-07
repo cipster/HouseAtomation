@@ -1,4 +1,5 @@
 define('TemplateService', ['jquery', 'mustache'], function ($, Mustache) {
+
     /**
      * Renders the Dial Template ( "templates/temperature-dials.mustache" ) with values from stateData
      *
@@ -7,15 +8,18 @@ define('TemplateService', ['jquery', 'mustache'], function ($, Mustache) {
      */
     var renderDialTemplate = function (stateData) {
         var $temperatureDials = $('#temperature-dials'),
-            renderedDialTemplate;
+            renderedDialTemplate = "";
 
-        $.get('templates/temperature-dials.mustache', function (template) {
+        $.get('templates/temperature-dials.mustache').done(function (template) {
             Mustache.parse(template);
 
             renderedDialTemplate = Mustache.render(template, stateData);
 
             $temperatureDials.html(renderedDialTemplate);
+
         });
+
+        return renderedDialTemplate;
     };
 
     return {

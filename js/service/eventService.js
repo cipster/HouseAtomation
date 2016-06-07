@@ -1,5 +1,9 @@
 define('EventService', [], function () {
     return {
+        "houseLoadEvents":{
+          "beforeLoad": "house.load",
+          "afterLoad": "house.loaded"
+        },
         "lightEvents": {
             "beforeOn": "light.open",
             "afterOn": "light.opened",

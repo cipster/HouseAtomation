@@ -64,4 +64,5 @@ fabric.properties
 .gitignore
 /HouseAtomation.ipr
 /HouseAtomation.iml
-/bower_components/
+bower_components/
+.idea/

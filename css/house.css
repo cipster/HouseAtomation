@@ -27,3 +27,6 @@
     fill: rgba(255, 0, 17, 0.19);
 }
 
+.html5-video-container, .html5-main-video {
+    display: none!important;
+}
