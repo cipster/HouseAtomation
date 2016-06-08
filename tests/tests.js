@@ -7,7 +7,6 @@ require.config({
         'jasmine-jquery': "../bower_components/jasmine-jquery/lib/jasmine-jquery",
         'jasmine-html': "../bower_components/jasmine/lib/jasmine-core/jasmine-html",
         'jasmine-boot': "boot-without-onload",
-        domReady: "../bower_components/domReady/domReady",
         HouseController: "../js/controller/houseController",
         EventService: "../js/service/eventService",
         SvgService: "../js/service/svgService",
@@ -40,6 +39,7 @@ require.config({
 require(['jasmine-boot'], function () {
     require(
         [
+            'suites/houseControllerSpec',
             'suites/svgServiceSpec',
             'suites/stateServiceSpec',
             'suites/templateServiceSpec',

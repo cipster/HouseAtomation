@@ -3,7 +3,6 @@ require.config({
         jquery: "bower_components/jquery/dist/jquery.min",
         svg: "bower_components/jquery-svg/jquery.svg.min",
         mustache: "bower_components/mustache.js/mustache.min",
-        domReady: "bower_components/domReady/domReady",
         HouseController: "js/controller/houseController",
         EventService: "js/service/eventService",
         SvgService: "js/service/svgService",
@@ -30,4 +29,5 @@ require.config({
  * @see HouseController.init
  */
 require(['HouseController'], function (HouseController) {
+    HouseController.init();
 });

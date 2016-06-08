@@ -18,11 +18,7 @@ define('EventService', [], function () {
         },
         "temperatureEvents": {
             "temperatureChange": "temperature.change",
-            "temperatureChanged": "temperature.changed",
-            "beforeIncrease": "temperature.increase",
-            "afterIncrease": "temperature.increased",
-            "beforeDecrease": "temperature.decrease",
-            "afterDecrease": "temperature.decreased"
+            "temperatureChanged": "temperature.changed"
         }
     }
 });
