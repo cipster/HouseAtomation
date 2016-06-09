@@ -42,7 +42,8 @@ House automation uses:
     
 #Getting started
 
-Checkout using either [HTTPS](https://github.com/cipster/HouseAutomation.git) or [SSH](git@github.com:cipster/HouseAutomation.git)
+Checkout using either [HTTPS](https://github.com/cipster/HouseAutomation.git) or <code>git@github.com:cipster/HouseAutomation.git</code>
+
 Not that much to it, isn't it?
 
 #Compatible browsers
