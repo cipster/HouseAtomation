@@ -1,6 +1,8 @@
 #house {
     width: 100%;
     height: 1000px;
+    display: block;
+    margin: auto;
 }
 
 .room {
@@ -30,4 +32,53 @@
 .light,
 .curtains {
     cursor: pointer;
+}
+
+@media(min-width: 375px) {
+    #house{
+        width: 350px;
+        height: 300px;
+    }
+}
+
+@media(min-width: 425px) {
+    #house{
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media(min-width: 768px) {
+    #house{
+        width: 730px;
+        height: 600px;
+    }
+}
+
+@media(min-width: 1024px) {
+    #house{
+        width: 900px;
+        height: 700px;
+    }
+}
+
+@media(min-width: 1440px) {
+    #house{
+        width: 1000px;
+        height: 800px;
+    }
+}
+
+@media(min-width: 1920px) {
+    #house{
+        width: 1100px;
+        height: 900px;
+    }
+}
+
+@media(min-width: 2560px) {
+    #house{
+        width: 2000px;
+        height: 1500px;
+    }
 }

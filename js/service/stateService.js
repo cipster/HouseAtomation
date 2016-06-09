@@ -20,7 +20,7 @@ define('StateService', ['jquery', 'TemplateService', 'LightService', 'CurtainSer
 
                     setTimeout(function () {
                         loadState(state);
-                    }, 200);
+                    }, 400);
                 });
             },
 
