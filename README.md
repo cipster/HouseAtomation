@@ -24,7 +24,7 @@ You can see it in action at [cipster.github.io/HouseAutomation](https://cipster.
 
  or 
  
-You can run its tests [here](https://cipster.github.io/HouseAutomation/) 
+You can run its tests [here](https://cipster.github.io/HouseAutomation/tests/testRunner.html) 
 
 
 #Technologies
